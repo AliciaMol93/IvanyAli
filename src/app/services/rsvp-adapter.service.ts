@@ -4,7 +4,7 @@ import { RsvpService } from './rsvpService.service';
 import { RsvpSheetService } from './rsvp-sheet.service';
 import { Invitado } from '../components/rsvp/rsvp-form/invitadoInterface';
 import * as CryptoJS from 'crypto-js';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 const CLAVE_SECRETA = 'retrowedd123';
 console.log("🌍 Modo Sheets:", environment.useSheets);
@@ -50,11 +50,32 @@ export class RsvpAdapterService {
     }
 
     // --- MODO PRODUCCIÓN (Google Sheets) ---
-    if (invitado.asistencia) {
-      this.asistenciaSubject.next(true);
+    // --- MODO SHEETS ---
+if (invitado.asistencia) {
+  this.asistenciaSubject.next(true);
+}
+
+return this.sheets.guardarInvitado(invitado).pipe(
+  map((res: any) => {
+    console.log("🟢 Respuesta de Sheets:", res);
+
+    // Normalizamos posibles formatos
+    const id = res?.invitado_id ?? res?.invitadoId ?? res?.id;
+
+    // ⚠️ Control de error: no guardar si la respuesta no es válida
+    if (!res || res.success !== true || !id) {
+      console.error("❌ Error guardando invitado:", res);
+      throw new Error("No se pudo registrar tu asistencia. Comprueba tu conexión e inténtalo nuevamente.");
     }
 
-    return this.sheets.guardarInvitado(invitado) as any;
+    // Guardar SOLO si el ID es correcto
+    localStorage.setItem('invitado_id', String(id));
+    console.log("🟢 invitado_id guardado correctamente:", id);
+
+    return res;
+  })
+);
+
   }
 
   // ---------------------------
