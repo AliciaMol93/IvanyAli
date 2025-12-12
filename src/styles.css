@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@plugin "daisyui";
+.retro-font {
+  font-family: 'Press Start 2P', monospace;
+}
+
+.retro-elegant {
+  font-family: 'Major Mono Display', monospace;
+}
+.font-retro {
+  font-family: 'Archivo Black', serif;
+}
+
+/* Animación global */
+@keyframes floaty {
+  from { transform: translateY(0) rotate(-4deg); }
+  to   { transform: translateY(8px) rotate(4deg); }
+}
+
+/* Desktop: GIFs absolutos */
+.gif-desktop {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gif-abs {
+  position: absolute;
+  opacity: 0.18;
+  animation: floaty 5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Mobile grid (oculto inicialmente) */
+.gif-mobile {
+  display: none;
+}
+
+/* Mobile: fullscreen grid */
+@media screen and (max-width: 768px) {
+
+  .gif-desktop {
+    display: none !important;
+  }
+
+  .gif-mobile {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    width: 100vw;
+    height: 100vh;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .gif-mobile img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    opacity: 0.4;
+    animation: floaty 6s ease-in-out infinite alternate;
+  }
+}
