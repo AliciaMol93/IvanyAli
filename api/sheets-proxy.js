@@ -1,6 +1,6 @@
 module.exports = async function handler(req, res) {
   const url =
-    "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLgV8XZZBSqOtIoOeRIMvmZNxU6HBT98Rts56jcu_n0s7bu7iOqwTSQaIHLUmhwBB_gRbWB4bQqzOBwrHl-6Dv9gNayI6Yg18AKmVG-h_PaXpms3PB02jNK-pjfOwHrqcwPuP5jj3cmioWmnlBGr3grZ8ht4nYDVO7YsFiw8UJBD99uieF5aJFlavGE8UuK2R3HfZW9VJcuAHkhM-nMIe68m6eZTdNwtq6Fu5VOM91vsG8pIWVmShUU4jYIjGtVSyujH0rjHaii7qDRHxjTv_Uj9AKcEWVgRyUNKlNB2&lib=MOpXzqb5P6Q8Om1XOufDOhp3Z-ciZOyjE";
+    "https://script.google.com/macros/s/AKfycbxBMor6mLcPhsHiDjE8bot7vb52MpMKJkef_mXSHeOefMoecOzMqJdsnmEZVQBWRgGBJQ/exec";
 
   try {
     const response = await fetch(url, {
