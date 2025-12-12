@@ -99,63 +99,75 @@ export default class RsvpFormComponent {
    * Valida, crea objeto invitado y llama al servicio para guardar datos.
    * Muestra mensajes de éxito o error al usuario.
    */
-  onSave(){
-  if(this.myForm.invalid){
-    this.myForm.markAllAsTouched()
+  onSave() {
+
+  if (this.myForm.invalid) {
+    this.myForm.markAllAsTouched();
     return;
   }
+
   const formularioData = this.myForm.value;
-  const asistencia = formularioData.asistencia === true || formularioData.asistencia === 'true';
-  let alergenosSeleccionados: { alergeno_id: number, nombre_alergeno: string }[] = [];
 
-  // Asignar los alérgenos seleccionados con su ID
-  if (formularioData.alergenos.frutos_secos) {
-    alergenosSeleccionados.push({ alergeno_id: 38, nombre_alergeno: 'Frutos secos' });
-  }
-  if (formularioData.alergenos.lactosa) {
-    alergenosSeleccionados.push({ alergeno_id: 39, nombre_alergeno: 'Lactosa' });
-  }
-  if (formularioData.alergenos.gluten) {
-    alergenosSeleccionados.push({ alergeno_id: 37, nombre_alergeno: 'Gluten' });
-  }
+  // ALÉRGENOS
+  let alergenosSeleccionados: { alergeno_id: number; nombre_alergeno: string }[] = [];
 
-  // Si hay algún valor en 'otrosAlergenos', lo agregamos al string
-  const otrosAlergenos = formularioData.otrosAlergenos?.trim() || '';
+  if (formularioData.alergenos.frutos_secos)
+    alergenosSeleccionados.push({ alergeno_id: 38, nombre_alergeno: "Frutos secos" });
+  if (formularioData.alergenos.lactosa)
+    alergenosSeleccionados.push({ alergeno_id: 39, nombre_alergeno: "Lactosa" });
+  if (formularioData.alergenos.gluten)
+    alergenosSeleccionados.push({ alergeno_id: 37, nombre_alergeno: "Gluten" });
 
-  // Crear el objeto invitado con las propiedades correctas
   const invitado: Invitado = {
     nombre_inv: formularioData.name,
     apellidos: formularioData.apellidos,
     email: formularioData.email,
-    asistencia: !!formularioData.asistencia,
+    asistencia: formularioData.asistencia,
     transporte: formularioData.transporte,
     num_ninos: formularioData.num_ninos,
     menu_id: this.menuOptions.indexOf(formularioData.menus) + 1,
     alergenos: alergenosSeleccionados,
-    otrosAlergenos: otrosAlergenos,
+    otrosAlergenos: formularioData.otrosAlergenos || "",
   };
 
-   // LLama al metodo para guardar el email
-   this.rsvpService.guardarEmailCifrado(formularioData.email);
+  // Guardamos email cifrado
+  this.rsvpService.guardarEmailCifrado(formularioData.email);
 
-   //LLama al servicio para crear el invitado
-   this.rsvpService.guardarInvitado(invitado).subscribe({
-    next: (response) => {
-      this.mensaje = '🎉 ¡Mission Complete! ¡Nos vemos en el evento!';
+  this.rsvpService.guardarInvitado(invitado).subscribe({
+  next: (rawResponse: any) => {
+    console.log("🔍 RESPUESTA RAW:", rawResponse);
+
+    let response: any;
+
+    try {
+      response = typeof rawResponse === "string"
+        ? JSON.parse(rawResponse)
+        : rawResponse;
+    } catch {
+      console.warn("⚠ Respuesta no válida");
+      this.mensaje = "❌ Error inesperado en el servidor.";
+      return;
+    }
+
+    if (response?.success) {
+      this.mensaje = "🎉 ¡Mission Complete! ¡Nos vemos en el evento!";
       this.myForm.reset();
 
-
-      if (this.returnToPlaylist) {this.router.navigate(['/playlist']);}
-
-      // Limpia el mensaje después de 5 segundos
-      setTimeout(() => {
-        this.mensaje = '';
-      }, 5000);
-    },
-    error: (error) => {
-      console.error('Error al enviar', error);
-      this.mensaje = '❌ Ocurrió un error al enviar el formulario. Inténtalo de nuevo.';
+      if (this.returnToPlaylist) {
+        this.router.navigate(['/playlist']);
+      }
+    } else {
+      this.mensaje = "❌ Hubo un error al guardar la información.";
     }
-  });
+
+    setTimeout(() => this.mensaje = "", 5000);
+  },
+
+  error: (error: any) => {
+    console.error("❌ ERROR:", error);
+    this.mensaje = "❌ No se pudo conectar con el servidor.";
+    setTimeout(() => this.mensaje = "", 5000);
+  }
+});
   }
 }

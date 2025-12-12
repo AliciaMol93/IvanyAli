@@ -45,7 +45,7 @@ export class RsvpAdapterService {
     if (!environment.useSheets) {
 
       // --- MODO LOCAL (tu backend) ---
-      return this.backend.crearInvitado(invitado);
+      return this.backend.crearInvitado(invitado) as any;
     }
 
     // --- MODO PRODUCCIÓN (Google Sheets) ---
@@ -53,7 +53,7 @@ export class RsvpAdapterService {
       this.asistenciaSubject.next(true);
     }
 
-    return this.sheets.guardarInvitado(invitado);
+    return this.sheets.guardarInvitado(invitado) as any;
   }
 
   // ---------------------------
