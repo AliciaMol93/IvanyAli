@@ -7,6 +7,7 @@ import * as CryptoJS from 'crypto-js';
 import { BehaviorSubject } from 'rxjs';
 
 const CLAVE_SECRETA = 'retrowedd123';
+console.log("🌍 Modo Sheets:", environment.useSheets);
 
 @Injectable({ providedIn: 'root' })
 export class RsvpAdapterService {
@@ -70,7 +71,8 @@ export class RsvpAdapterService {
     const asistencia = !!this.getEmailDescifrado();
     this.asistenciaSubject.next(asistencia);
 
-    return this.asistenciaSubject;
+    return this.asistenciaSubject.asObservable();
+;
   }
 
   // ---------------------------
