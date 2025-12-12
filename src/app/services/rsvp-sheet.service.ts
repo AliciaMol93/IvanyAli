@@ -7,7 +7,8 @@ import { tap } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class RsvpSheetService {
 
-  private apiUrl = 'https://script.google.com/macros/s/AKfycbykLK7Au9Wv1n-jzqLX7S-LJ_v7cib3eJTGHtkR1eusPbkiuq19LYqUAAmrXiMBQB2oJA/exec';
+  private apiUrl = '/api/sheets-proxy';
+
 
   constructor(private http: HttpClient) {}
 
