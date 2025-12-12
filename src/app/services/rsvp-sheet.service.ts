@@ -6,7 +6,8 @@ import { Invitado } from '../components/rsvp/rsvp-form/invitadoInterface';
 @Injectable({ providedIn: 'root' })
 export class RsvpSheetService {
 
-  private apiUrl = 'https://script.google.com/macros/s/AKfycbxnJzNbGnScU73HWeB0d-jGtaXpJgbrYn4KVLF1aLtclGXPPYMFIfyVmb_l-3Yd5tDr_Q/exec';
+  private apiUrl = 'https://script.google.com/macros/s/AKfycbxYYScQrj2YFUlpa-INitV-b6Lnp5gq_xPh4HRsujvmkV1i-xt3WSVtfa2NgSSzlyA50g/exec';
+
 
   constructor(private http: HttpClient) {}
 
