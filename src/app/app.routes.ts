@@ -4,7 +4,12 @@ export const routes: Routes = [
   {
     path: 'home',
     loadComponent: () =>
-      import('./components/home/home.component'),
+      import('./components/home/home.component')
+  },
+  {
+    path: 'video',
+    loadComponent: () =>
+      import('./components/video/video.component')
   },
   {
     path: 'aboutus',

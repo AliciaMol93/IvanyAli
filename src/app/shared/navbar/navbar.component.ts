@@ -13,6 +13,7 @@ export class NavbarComponent {
   // Lista de los elementos del menú
   menuItems = [
     { label: 'Inicio', path: '/home' },
+    { label: 'Save the Date', path: '/video' },
     { label: 'Nosotros', path: '/aboutus' },
     { label: 'Itinerario', path: '/itinerary' },
     { label: 'Playlist', path: '/playlist' },

@@ -10,9 +10,9 @@ import { CommonModule } from '@angular/common';
 export default class AboutUsComponent {
   commonText = `Un 2016 Iváni (nuestro amigo en común) invitó a Ali al festival Etnosur,
   ella sin mucho que perder se fue con "La Mari" y dos amigos más de Iváni.
-  Nos recoge un VW Polo azul que lleva Iván.
-  Primeras miradas, nervios, timidez, feria de baza, primeras veces, hogar, Tony,
-  viajes, nuevas experiencias, yoda, nuevos proyectos, nuevas amistades, Viena... y Sí, quiero.`;
+  La recoge un VW Polo azul que lleva Iván.
+  Primeras miradas, nervios, timidez, hogar, Tony, viajes,
+  nuevas experiencias, yoda, nuevos proyectos, nuevas amistades, Viena... y Sí, quiero.`;
 
   //para saltos de linea
   formatText(text?: string): string {
