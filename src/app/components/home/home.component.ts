@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './home.component.html',
 })
 export default class HomeComponent implements OnInit {

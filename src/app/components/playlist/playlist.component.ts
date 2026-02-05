@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RsvpAdapterService } from '../../services/rsvp-adapter.service';
-import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 /**
@@ -10,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule],
 })
 export default class PlaylistComponent implements OnInit {
   /** Indica si el usuario ha confirmado su asistencia al evento */
