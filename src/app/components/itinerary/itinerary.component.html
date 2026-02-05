@@ -1,6 +1,6 @@
-<div class="relative mt-5 overflow-y-scroll">
+<div class="relative mt-4 md:mt-6 overflow-y-scroll max-md:overflow-visible px-4 md:px-0 z-0">
   <!-- Pac-Man bajando-->
-  <div class="absolute left-1/2 -translate-x-1/2 z-40 animate-pacman max-md:left-4 max-md:translate-x-0">
+  <div class="absolute left-1/2 -translate-x-1/2 z-30 animate-pacman">
     <img
       #pacman
       [src]="'assets/images/580b57fcd9996e24bc43c313.png'"
@@ -9,7 +9,7 @@
     />
   </div>
 
-  <ul class="timeline timeline-snap-icon max-md:timeline-compact mt-20 timeline-vertical max-md:ml-4 max-md:before:!left-4">
+  <ul class="relative z-10 timeline timeline-snap-icon max-md:timeline-compact mt-10 md:mt-20 timeline-vertical max-md:ml-4 max-md:before:!left-4">
 
     @for(event of events; track event.i){
       <li class="max-md:!ml-0">

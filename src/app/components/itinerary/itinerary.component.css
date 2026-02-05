@@ -5,13 +5,19 @@
 
 .animate-pacman {
   animation: pacman-move 20s linear infinite;
+  z-index: 30;
+}
+
+.punto-visitado {
+  background-color: #ff6a11 !important;
+  box-shadow: 0 0 0 2px #ffd36a, 0 0 10px #ff6a11;
 }
 
 /*Móviles */
 @media (max-width: 767px) {
   .animate-pacman {
-    left: 1rem !important;
-    transform: none !important;
+    left: 2.5rem !important;
+    transform: translateX(25%) !important;
     animation: pacman-move-mobile 50s linear infinite;
   }
 
@@ -24,9 +30,12 @@
 @media (max-width: 767px) {
   .timeline {
     margin-left: 1.85rem !important;
+    position: relative;
+    z-index: 2;
   }
 
   .timeline::before {
     left: 1rem !important;
+    z-index: 2;
   }
 }

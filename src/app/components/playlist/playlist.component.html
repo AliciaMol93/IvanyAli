@@ -1,6 +1,6 @@
-<div class="relative max-w-2xl mx-auto mt-10">
-  <img class="w-200" src="/assets/images/playlist_recorte.png">
-  <div class="playlist-container max-w-2xl mx-auto text-center p-6 bg-[#004b6f] border-20 border-[#4fb8b9] rounded-xl shadow-lg">
+<div class="relative max-w-2xl mx-auto mt-6 md:mt-10 px-3 md:px-0">
+  <img class="w-full max-w-2xl mx-auto mb-4" src="/assets/images/playlist_recorte.png">
+  <div class="playlist-container max-w-2xl mx-auto text-center p-4 md:p-6 bg-[#004b6f] border-[8px] sm:border-[10px] md:border-20 border-[#4fb8b9] rounded-xl shadow-lg">
     <!-- Si la asistencia está confirmada mostrar la playlist y el formulario de sugerencias-->
     @if(attendanceConfirmed) {
       <iframe
@@ -16,14 +16,14 @@
       <!-- Formulario de sugerencia de canción -->
       <form (ngSubmit)="submitSuggestion()" class="flex flex-col gap-2 mt-4">
         <div class="playlist-container max-w-2xl mx-auto text-center">
-          <h2 class="text-2xl font-bold text-[#004b6f]  bg-white p-4 rounded-md inline-block mb-6 shadow-md">
+          <h2 class="text-xl md:text-2xl font-bold text-[#004b6f] bg-white p-3 md:p-4 rounded-md inline-block mb-4 md:mb-6 shadow-md">
             ⬇ Propón tu temazo aquí ⬇
           </h2>
         </div>
 
-        <input [(ngModel)]="songInput.song_name" name="nombre_cancion" placeholder="Nombre de la canción" required class="border p-2 rounded text-white" />
-        <input [(ngModel)]="songInput.artist" name="artista" placeholder="Artista" required class="border p-2 rounded text-white" />
-        <button type="submit" class="bg-[#ff6a11] text-white px-4 py-2 rounded hover:bg-[#ef2d00] cursor-pointer ">Enviar</button>
+        <input [(ngModel)]="songInput.song_name" name="nombre_cancion" placeholder="Nombre de la canción" required class="border p-2 rounded text-white text-sm sm:text-base" />
+        <input [(ngModel)]="songInput.artist" name="artista" placeholder="Artista" required class="border p-2 rounded text-white text-sm sm:text-base" />
+        <button type="submit" class="bg-[#ff6a11] text-white px-4 py-2 rounded hover:bg-[#ef2d00] cursor-pointer text-sm sm:text-base">Enviar</button>
       </form>
       <div class="mt-4 text- font-semibold text-[#ff6a11]">
         @if(message){

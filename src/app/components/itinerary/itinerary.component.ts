@@ -1,4 +1,13 @@
-import { Component, ElementRef, OnInit, signal, viewChild, viewChildren } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  afterNextRender,
+  viewChild,
+  viewChildren,
+} from '@angular/core';
 
 @Component({
   selector: 'app-itinerary',
@@ -6,7 +15,7 @@ import { Component, ElementRef, OnInit, signal, viewChild, viewChildren } from '
   templateUrl: './itinerary.component.html',
   styleUrls: ['./itinerary.component.css']
 })
-export default class ItineraryComponent implements OnInit{
+export default class ItineraryComponent implements OnInit, AfterViewInit, OnDestroy {
   // Datos del itinerario de la boda
   events=[
     { i:0,
@@ -41,10 +50,65 @@ export default class ItineraryComponent implements OnInit{
     }
   ];
 
-  constructor() { }
+  pacmanRef = viewChild<ElementRef<HTMLImageElement>>('pacman');
+  pointRefs = viewChildren<ElementRef<HTMLElement>>('point');
 
-  ngOnInit(): void {
+  private rafId: number | null = null;
+  private visitedPoints = new Set<HTMLElement>();
 
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    afterNextRender(() => {
+      this.startTracking();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.rafId !== null) {
+      cancelAnimationFrame(this.rafId);
+      this.rafId = null;
+    }
+  }
+
+  private startTracking(): void {
+    const pacmanEl = this.pacmanRef()?.nativeElement;
+    const points = this.pointRefs().map((ref) => ref.nativeElement);
+
+    if (!pacmanEl || points.length === 0) {
+      return;
+    }
+
+    const tick = () => {
+      const pacmanRect = pacmanEl.getBoundingClientRect();
+      const pacmanCenterX = pacmanRect.left + pacmanRect.width / 2;
+      const pacmanCenterY = pacmanRect.top + pacmanRect.height / 2;
+
+      points.forEach((point) => {
+        if (this.visitedPoints.has(point)) {
+          return;
+        }
+
+        const pointRect = point.getBoundingClientRect();
+        const pointCenterX = pointRect.left + pointRect.width / 2;
+        const pointCenterY = pointRect.top + pointRect.height / 2;
+        const distance = Math.hypot(
+          pacmanCenterX - pointCenterX,
+          pacmanCenterY - pointCenterY
+        );
+
+        if (distance <= pointRect.width * 2) {
+          point.classList.add('punto-visitado');
+          this.visitedPoints.add(point);
+        }
+      });
+
+      this.rafId = requestAnimationFrame(tick);
+    };
+
+    this.rafId = requestAnimationFrame(tick);
   }
 
 

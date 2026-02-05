@@ -1,25 +1,25 @@
-<div class="relative min-h-screen -mt-10">
+<div class="relative min-h-[85vh] md:min-h-screen -mt-10">
   <!-- Contenido principal -->
   <div
-    class="relative flex flex-col items-center justify-center min-h-screen p-4 z-10"
+    class="relative flex flex-col items-center justify-center min-h-[85vh] md:min-h-screen p-4 md:p-6 z-10"
   >
     <!-- Logo -->
-    <div class="mb-12 relative flex justify-center items-center">
+    <div class="mb-4 md:mb-8 relative flex justify-center items-center">
       <div
-        class="absolute bg-red-700 rounded-full w-[350px] h-[350px] md:w-[500px] md:h-[500px] opacity-90"
+        class="absolute bg-red-700 rounded-full w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] md:w-[620px] md:h-[620px] opacity-90"
       ></div>
       <img
-        class="relative z-10 w-[250px] md:w-[500px] object-contain"
+        class="relative z-10 w-[280px] sm:w-[340px] md:w-[560px] object-contain"
         src="/assets/images/homepage.png"
         alt="logo"
       />
     </div>
 
     <!-- contador -->
-    <div class="relative -mt-15">
+    <div class="relative -mt-4 md:-mt-8">
       <!-- Fondo del contador -->
       <div
-        class="bg-black bg-opacity-70 p-6 rounded-lg border-4 border-amber-50 pixel-corners"
+        class="bg-black bg-opacity-70 p-6 md:p-8 rounded-lg border-4 border-amber-50 pixel-corners"
       >
         <div
           class="grid auto-cols-max grid-flow-col gap-4 md:gap-6 text-center"
@@ -27,7 +27,7 @@
           <!-- Días -->
           <div class="flex flex-col items-center">
             <span
-              class="font-[PressStart2P] text-4xl md:text-5xl text-amber-100"
+              class="font-[PressStart2P] text-5xl sm:text-6xl md:text-7xl text-amber-100"
             >
               {{ countdown().days }}
             </span>
@@ -42,7 +42,7 @@
           <!-- Horas -->
           <div class="flex flex-col items-center">
             <span
-              class="font-[PressStart2P] text-4xl md:text-5xl text-amber-100"
+              class="font-[PressStart2P] text-5xl sm:text-6xl md:text-7xl text-amber-100"
             >
               {{ countdown().hours }}
             </span>
@@ -57,7 +57,7 @@
           <!-- Minutos -->
           <div class="flex flex-col items-center">
             <span
-              class="font-[PressStart2P] text-4xl md:text-5xl text-amber-100"
+              class="font-[PressStart2P] text-5xl sm:text-6xl md:text-7xl text-amber-100"
             >
               {{ countdown().minutes }}
             </span>
@@ -72,7 +72,7 @@
           <!-- Segundos -->
           <div class="flex flex-col items-center">
             <span
-              class="font-[PressStart2P] text-4xl md:text-5xl text-amber-100"
+              class="font-[PressStart2P] text-5xl sm:text-6xl md:text-7xl text-amber-100"
             >
               {{ countdown().seconds }}
             </span>

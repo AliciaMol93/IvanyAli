@@ -1,5 +1,5 @@
 <section
-  class="relative flex flex-col items-center justify-center px-6 py-20 text-center bg-[url('/assets/textures/projection-noise.jpg')] bg-cover bg-fixed bg-center overflow-hidden"
+  class="relative flex flex-col items-center justify-center px-4 md:px-6 py-12 md:py-20 text-center bg-[url('/assets/textures/projection-noise.jpg')] bg-cover bg-fixed bg-center overflow-hidden"
 >
     <!-- GIFS (desktop + mobile) -->
     <div class="absolute inset-0 w-full h-full z-0 pointer-events-none">
@@ -157,7 +157,7 @@
     </div>
 
     <div
-      class="relative w-[24rem] h-[34rem] bg-black rounded-xl border-[6px] border-[#444] shadow-2xl overflow-visible"
+      class="relative w-[18rem] h-[26rem] sm:w-[22rem] sm:h-[32rem] md:w-[24rem] md:h-[34rem] bg-black rounded-xl border-[6px] border-[#444] shadow-2xl overflow-visible"
     >
       <img
         class="absolute -top-7 -left-10 w-24 rotate-[-4deg] z-40"
@@ -211,7 +211,7 @@
       </div>
     </div>
 
-    <div class="relative">
+    <div class="relative mt-6 md:mt-0">
       <img
         class="absolute -top-4 -left-10 w-30 -rotate-20 z-40"
         src="/assets/images/superPop.png"
@@ -219,7 +219,7 @@
       />
 
       <div
-        class="bg-[#f9f4e8] mt-10 p-6 rounded-xl shadow-inner border border-yellow-300 w-full max-w-lg font-retro text-gray-800 leading-relaxed text-left"
+        class="bg-[#f9f4e8] mt-6 md:mt-10 p-4 md:p-6 rounded-xl shadow-inner border border-yellow-300 w-full max-w-lg font-retro text-gray-800 leading-relaxed text-left"
       >
         <h3 class="text-2xl font-bold mb-4">Nuestra historia</h3>
         <div [innerHTML]="formatText(photos[currentIndex]?.text)"></div>
